@@ -5,33 +5,32 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Mauritius Open Data',
-      titleTemplate: '%s — data.ramgolam.com',
+      title: 'Sandeep Ramgolam // Data Projects',
+      titleTemplate: '%s',
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
-        { name: 'description', content: 'Open data projects for Mauritius — fuel prices, gold prices, internet plans, power outages, and more. All data is freely accessible.' },
+        { name: 'description', content: 'Personal data visualization and open data projects by Sandeep Ramgolam.' },
         { name: 'author', content: 'Sandeep Ramgolam' },
         { name: 'robots', content: 'index, follow' },
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: 'https://data.ramgolam.com' },
-        { property: 'og:title', content: 'Mauritius Open Data' },
-        { property: 'og:description', content: 'Open data projects for Mauritius — fuel prices, gold prices, internet plans, power outages, and more.' },
+        { property: 'og:title', content: 'Sandeep Ramgolam // Data Projects' },
+        { property: 'og:description', content: 'Personal data visualization and open data projects.' },
         { property: 'og:image', content: 'https://data.ramgolam.com/og.png' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:creator', content: '@MrSunshyne' },
-        { name: 'twitter:title', content: 'Mauritius Open Data' },
-        { name: 'twitter:description', content: 'Open data projects for Mauritius — fuel prices, gold prices, internet plans, power outages, and more.' },
+        { name: 'twitter:title', content: 'Sandeep Ramgolam // Data Projects' },
+        { name: 'twitter:description', content: 'Personal data visualization and open data projects.' },
         { name: 'twitter:image', content: 'https://data.ramgolam.com/og.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'canonical', href: 'https://data.ramgolam.com' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'preconnect', href: 'https://api.fontshare.com' },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap',
+          href: 'https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&display=swap',
         },
       ],
       script: [

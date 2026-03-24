@@ -1,853 +1,423 @@
 <template>
-  <div class="site">
+  <div class="ma-root">
     <NuxtRouteAnnouncer />
 
-    <!-- Nav -->
-    <header class="nav">
-      <div class="nav-inner">
-        <a href="/" class="nav-logo">
-          <span class="nav-logo-icon" aria-hidden="true">◈</span>
-          <span>data.ramgolam.com</span>
-        </a>
-        <a
-          href="https://github.com/MrSunshyne"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-gh"
-          aria-label="GitHub"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-          </svg>
-        </a>
-      </div>
-    </header>
-
-    <main>
-      <!-- Hero -->
-      <section class="hero">
-        <div class="hero-inner">
-          <div class="hero-badge">
-            <span class="badge-dot" aria-hidden="true"></span>
-            Open Data Initiative
-          </div>
-          <h1 class="hero-title">
-            Mauritius<br />
-            <span class="hero-accent">Open Data</span>
-          </h1>
-          <p class="hero-desc">
-            Making public data about Mauritius accessible, visual, and usable.
-            Free datasets and live dashboards for fuel, gold, internet prices, and more.
-          </p>
-          <div class="hero-stats">
-            <div class="stat">
-              <span class="stat-num">5</span>
-              <span class="stat-label">Live Apps</span>
-            </div>
-            <div class="stat-divider" aria-hidden="true"></div>
-            <div class="stat">
-              <span class="stat-num">5</span>
-              <span class="stat-label">Open Datasets</span>
-            </div>
-            <div class="stat-divider" aria-hidden="true"></div>
-            <div class="stat">
-              <span class="stat-num">20+</span>
-              <span class="stat-label">Years of Data</span>
-            </div>
+    <div class="ma-layout">
+      <!-- Left Side: Fixed Sidebar -->
+      <aside class="ma-sidebar">
+        <div class="ma-hero-inner">
+          <header class="ma-profile">
+            <span class="ma-name">SANDEEP RAMGOLAM</span>
+            <span class="ma-label">/ DATA ARCHIVIST</span>
+          </header>
+          <h1 class="ma-title">Personal <br />Data Projects</h1>
+          <p class="ma-desc">Visualizing Mauritian datasets into machine-readable formats and interactive experiences. Exploring finance, infrastructure, and national benchmarks.</p>
+          <div class="ma-hero-links">
+            <a href="https://sandeep.ramgolam.com" target="_blank" class="ma-link-btn">Portfolio</a>
+            <a href="https://github.com/MrSunshyne" target="_blank" class="ma-link-btn">GitHub</a>
           </div>
         </div>
-        <div class="hero-glow" aria-hidden="true"></div>
-      </section>
+        <div class="ma-noise"></div>
+      </aside>
 
-      <!-- Live Apps -->
-      <section class="section">
-        <div class="section-inner">
-          <div class="section-header">
-            <span class="section-tag section-tag--live">Live Apps</span>
-            <h2 class="section-title">Interactive dashboards</h2>
-            <p class="section-sub">Data visualized and ready to explore</p>
-          </div>
-
-          <div class="grid grid--apps">
-            <!-- Fuel Prices -->
-            <a
-              href="https://fuel.ramgolam.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card card--live card--featured"
-              data-umami-event="click-fuel"
-            >
-              <div class="card-head">
-                <div class="card-icon">⛽</div>
-                <span class="card-badge card-badge--live">Live</span>
-              </div>
-              <h3 class="card-title">Fuel Prices</h3>
-              <p class="card-desc">Petrol &amp; diesel price history since 2002 with trend analysis and projections.</p>
-              <div class="card-meta">
-                <span class="card-source">Source: STC</span>
-                <span class="card-since">Since 2002</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-url">fuel.ramgolam.com</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-
-            <!-- Gold Prices -->
-            <a
-              href="https://gold.ramgolam.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card card--live"
-              data-umami-event="click-gold"
-            >
-              <div class="card-head">
-                <div class="card-icon">◈</div>
-                <span class="card-badge card-badge--live">Live</span>
-              </div>
-              <h3 class="card-title">Gold Prices</h3>
-              <p class="card-desc">Daily gold prices since 2004 across all karats, including Dodo coins.</p>
-              <div class="card-meta">
-                <span class="card-source">Source: BOM</span>
-                <span class="card-since">Since 2004</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-url">gold.ramgolam.com</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-
-            <!-- Internet Prices -->
-            <a
-              href="https://mobile-data.ramgolam.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card card--live"
-              data-umami-event="click-internet"
-            >
-              <div class="card-head">
-                <div class="card-icon">📶</div>
-                <span class="card-badge card-badge--live">Live</span>
-              </div>
-              <h3 class="card-title">Internet Prices</h3>
-              <p class="card-desc">Mobile data plan pricing comparison across all providers in Mauritius.</p>
-              <div class="card-meta">
-                <span class="card-source">Source: ISPs</span>
-                <span class="card-since">Current</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-url">mobile-data.ramgolam.com</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-
-            <!-- Power Outages -->
-            <a
-              href="https://power-outages-mauritius.netlify.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card card--live"
-              data-umami-event="click-power"
-            >
-              <div class="card-head">
-                <div class="card-icon">⚡</div>
-                <span class="card-badge card-badge--live">Live</span>
-              </div>
-              <h3 class="card-title">Power Outages</h3>
-              <p class="card-desc">Power outage tracker for Mauritius — history, frequency, and affected regions.</p>
-              <div class="card-meta">
-                <span class="card-source">Source: CEB</span>
-                <span class="card-since">Current</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-url">power-outages-mauritius.netlify.app</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-
-            <!-- Cloud Hosting -->
-            <a
-              href="https://github.com/MrSunshyne/cloud-hosting-mauritius"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card card--live card--wip"
-              data-umami-event="click-cloud"
-            >
-              <div class="card-head">
-                <div class="card-icon">☁</div>
-                <span class="card-badge card-badge--wip">WIP</span>
-              </div>
-              <h3 class="card-title">Cloud Hosting</h3>
-              <p class="card-desc">Cloud and hosting providers available in Mauritius, with specs and pricing.</p>
-              <div class="card-meta">
-                <span class="card-source">Source: Providers</span>
-                <span class="card-since">In progress</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-url">GitHub repo</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Datasets -->
-      <section class="section section--datasets">
-        <div class="section-inner">
-          <div class="section-header">
-            <span class="section-tag section-tag--data">Open Datasets</span>
-            <h2 class="section-title">Raw data, free to use</h2>
-            <p class="section-sub">Machine-readable datasets, updated regularly, licensed openly</p>
-          </div>
-
-          <div class="grid grid--datasets">
-            <a
-              href="https://github.com/MrSunshyne/mauritius-dataset-fuel"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card card--dataset"
-              data-umami-event="dataset-fuel"
-            >
-              <div class="card-head">
-                <div class="card-icon card-icon--sm">⛽</div>
-                <span class="card-badge card-badge--data">Dataset</span>
-              </div>
-              <h3 class="card-title">Fuel Dataset</h3>
-              <p class="card-desc">Daily fuel prices &amp; Brent crude oil data since 2002.</p>
-              <div class="card-footer">
-                <span class="card-url">mauritius-dataset-fuel</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-
-            <a
-              href="https://github.com/MrSunshyne/mauritius-dataset-gold"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card card--dataset"
-              data-umami-event="dataset-gold"
-            >
-              <div class="card-head">
-                <div class="card-icon card-icon--sm">◈</div>
-                <span class="card-badge card-badge--data">Dataset</span>
-              </div>
-              <h3 class="card-title">Gold Dataset</h3>
-              <p class="card-desc">Daily gold prices across all karats (9k–24k) since 2004.</p>
-              <div class="card-footer">
-                <span class="card-url">mauritius-dataset-gold</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-
-            <a
-              href="https://github.com/MrSunshyne/mauritius-dataset-electricity"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card card--dataset"
-              data-umami-event="dataset-electricity"
-            >
-              <div class="card-head">
-                <div class="card-icon card-icon--sm">⚡</div>
-                <span class="card-badge card-badge--data">Dataset</span>
-              </div>
-              <h3 class="card-title">Electricity Dataset</h3>
-              <p class="card-desc">Power outage history with dates, times, and affected areas.</p>
-              <div class="card-footer">
-                <span class="card-url">mauritius-dataset-electricity</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-
-            <a
-              href="https://github.com/MrSunshyne/mauritius-dataset-meteo"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card card--dataset"
-              data-umami-event="dataset-meteo"
-            >
-              <div class="card-head">
-                <div class="card-icon card-icon--sm">🌦</div>
-                <span class="card-badge card-badge--data">Dataset</span>
-              </div>
-              <h3 class="card-title">Meteo Dataset</h3>
-              <p class="card-desc">Weather and meteorological statistics across Mauritius.</p>
-              <div class="card-footer">
-                <span class="card-url">mauritius-dataset-meteo</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-
-            <a
-              href="https://github.com/MrSunshyne/mauritius-meetups-data"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card card--dataset"
-              data-umami-event="dataset-meetups"
-            >
-              <div class="card-head">
-                <div class="card-icon card-icon--sm">◉</div>
-                <span class="card-badge card-badge--data">Dataset</span>
-              </div>
-              <h3 class="card-title">Meetups Dataset</h3>
-              <p class="card-desc">Community tech meetup data — events, speakers, and attendance.</p>
-              <div class="card-footer">
-                <span class="card-url">mauritius-meetups-data</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section class="cta-section">
-        <div class="cta-inner">
-          <p class="cta-label">Open source &amp; free to use</p>
-          <h2 class="cta-title">Want to contribute or use the data?</h2>
-          <p class="cta-desc">All datasets are publicly available on GitHub. Pull requests welcome.</p>
-          <a
-            href="https://github.com/MrSunshyne"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="cta-btn"
-            data-umami-event="cta-github"
+      <!-- Right Side: Scrollable Feed -->
+      <main class="ma-feed">
+        <div class="ma-feed-grid">
+          
+          <!-- Projects -->
+          <div
+            v-for="project in projects"
+            :key="project.name"
+            class="ma-card ma-project"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-            </svg>
-            View on GitHub
+            <a :href="project.url" target="_blank" class="ma-project-link">
+              <div class="ma-project-info">
+                <div class="ma-project-content">
+                  <h2 class="ma-project-name">{{ project.name }}</h2>
+                  <p class="ma-project-sub">{{ project.tagline }}</p>
+                </div>
+              </div>
+              <div 
+                class="ma-project-thumb"
+                :style="{ backgroundImage: `url(${project.image})` }"
+              ></div>
+            </a>
+            <a v-if="project.github" :href="project.github" target="_blank" class="ma-project-github" title="View on GitHub">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            </a>
+          </div>
+
+          <!-- Datasets -->
+          <a
+            v-for="ds in datasets"
+            :key="ds.name"
+            :href="ds.url"
+            target="_blank"
+            class="ma-card ma-project ma-dataset-row"
+          >
+            <div class="ma-project-info">
+              <div class="ma-project-content">
+                <h2 class="ma-project-name">{{ ds.name }}</h2>
+                <p class="ma-project-sub">JSON Dataset</p>
+              </div>
+            </div>
+            <div
+              class="ma-project-thumb"
+              :style="{ backgroundImage: `url(${ds.image})` }"
+            ></div>
           </a>
         </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-left">
-          <span class="footer-name">Sandeep Ramgolam</span>
-          <span class="footer-sep" aria-hidden="true">·</span>
-          <a
-            href="https://ramgolam.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="footer-link"
-          >ramgolam.com</a>
-        </div>
-        <div class="footer-right">
-          <a
-            href="https://github.com/MrSunshyne"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="footer-link"
-          >GitHub</a>
-        </div>
-      </div>
-    </footer>
+      </main>
+    </div>
+    <!-- Screen Overlay Texture -->
+    <div class="ma-texture"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-useHead({
-  title: 'Mauritius Open Data',
-})
+const projects = [
+  {
+    name: 'Fuel Prices',
+    tagline: 'Historical Price Analysis',
+    url: 'https://fuel-prices.ramgolam.com',
+    github: 'https://github.com/MrSunshyne/mauritius-fuel-prices',
+    image: 'https://fuel-prices.ramgolam.com/og-image.png'
+  },
+  {
+    name: 'Gold Prices',
+    tagline: 'BOM Daily Rates',
+    url: 'https://gold.ramgolam.com',
+    github: 'https://github.com/MrSunshyne/gold-prices',
+    image: 'https://gold.ramgolam.com/og-image.png'
+  },
+  {
+    name: 'Internet Prices',
+    tagline: 'Connectivity Benchmark',
+    url: 'https://mobile-data.ramgolam.com',
+    github: 'https://github.com/MrSunshyne/mauritius-internet-prices',
+    image: 'https://mobile-data.ramgolam.com/og-image.png'
+  },
+  {
+    name: 'Power Outages',
+    tagline: 'CEB Infrastructure Logs',
+    url: 'https://power-outages-mauritius.netlify.app',
+    github: 'https://github.com/MrSunshyne/mauritius-power-outages',
+    image: 'https://power-outages-mauritius.netlify.app/__og-image__/image/og.png'
+  },
+  {
+    name: 'Cloud Hosting',
+    tagline: 'Hosting Provider Benchmark',
+    url: 'https://github.com/MrSunshyne/cloud-hosting-mauritius',
+    github: 'https://github.com/MrSunshyne/cloud-hosting-mauritius',
+    image: 'https://data.ramgolam.com/og.png'
+  }
+]
+
+const datasets = [
+  { name: 'Fuel Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-fuel', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-fuel/main/public/images/fuel.png' },
+  { name: 'Gold Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-gold', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-gold/main/og-image.png' },
+  { name: 'Electricity Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-electricity', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-electricity/main/public/images/electricity.png' },
+  { name: 'Meteo Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-meteo', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-meteo/main/public/images/meteo.png' },
+  { name: 'Meetups Dataset', url: 'https://github.com/MrSunshyne/mauritius-meetups-data', image: 'https://data.ramgolam.com/og.png' }
+]
 </script>
 
 <style>
-/* ── Reset & base ── */
+/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:         #080809;
-  --bg-card:    #0f0f11;
-  --bg-card-h:  #141418;
-  --border:     rgba(255, 255, 255, 0.07);
-  --border-h:   rgba(255, 255, 255, 0.13);
-
-  --text-1:     #f0f0f2;
-  --text-2:     #9393a0;
-  --text-3:     #5a5a6a;
-
-  --green:      #22c55e;
-  --green-dim:  rgba(34, 197, 94, 0.12);
-  --green-glow: rgba(34, 197, 94, 0.06);
-
-  --amber:      #f59e0b;
-  --amber-dim:  rgba(245, 158, 11, 0.12);
-
-  --blue-glow:  rgba(99, 102, 241, 0.15);
-
-  --radius-sm:  6px;
-  --radius:     12px;
-  --radius-lg:  18px;
-
-  --font-body:  'Inter', system-ui, -apple-system, sans-serif;
-  --font-disp:  'Syne', var(--font-body);
+  --ma-bg:         #0a0a0a;
+  --ma-border:     #1d1d1d;
+  --ma-card-bg:    #0f0f0f;
+  --ma-text:       #fcfcfc;
+  --ma-text-muted: #666;
+  --ma-accent:     #ff3e3e;
+  
+  --ma-font-disp:  'Clash Display', sans-serif;
+  --ma-font-body:  'Satoshi', sans-serif;
 }
 
-html { font-size: 16px; scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text-1);
-  line-height: 1.6;
+html, body {
+  background: var(--ma-bg);
+  color: var(--ma-text);
+  font-family: var(--ma-font-body);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 a { color: inherit; text-decoration: none; }
 
 /* ── Layout ── */
-.site { min-height: 100vh; display: flex; flex-direction: column; }
-main { flex: 1; }
+.ma-root {
+  min-height: 100vh;
+  position: relative;
+}
 
-/* ── Nav ── */
-.nav {
+.ma-layout {
+  display: flex;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+/* ── Sidebar (Fixed Left) ── */
+.ma-sidebar {
+  width: 420px;
+  flex-shrink: 0;
+  height: 100vh;
   position: sticky;
   top: 0;
-  z-index: 100;
-  border-bottom: 1px solid var(--border);
-  background: rgba(8, 8, 9, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-.nav-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
-  height: 56px;
+  padding: 80px 60px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--ma-border);
+  background: var(--ma-bg);
 }
-.nav-logo {
+
+.ma-profile {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-1);
-  letter-spacing: -0.01em;
-  transition: opacity 0.15s;
+  margin-bottom: 32px;
 }
-.nav-logo:hover { opacity: 0.7; }
-.nav-logo-icon {
-  color: var(--green);
-  font-size: 16px;
-}
-.nav-gh {
-  color: var(--text-2);
-  transition: color 0.15s;
-  display: flex;
-  align-items: center;
-}
-.nav-gh:hover { color: var(--text-1); }
 
-/* ── Hero ── */
-.hero {
-  position: relative;
-  overflow: hidden;
-  padding: 100px 24px 80px;
-  text-align: center;
-}
-.hero-inner {
-  max-width: 680px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-.hero-glow {
-  position: absolute;
-  top: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  height: 500px;
-  background: radial-gradient(ellipse at center, var(--blue-glow) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--green);
-  background: var(--green-dim);
-  border: 1px solid rgba(34, 197, 94, 0.2);
-  padding: 5px 12px;
-  border-radius: 100px;
-  margin-bottom: 28px;
-}
-.badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-.hero-title {
-  font-family: var(--font-disp);
-  font-size: clamp(44px, 8vw, 80px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: var(--text-1);
-  margin-bottom: 20px;
-}
-.hero-accent {
-  background: linear-gradient(135deg, var(--green) 0%, #16a34a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero-desc {
-  font-size: 17px;
-  color: var(--text-2);
-  max-width: 520px;
-  margin: 0 auto 40px;
-  line-height: 1.7;
-}
-.hero-stats {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  flex-wrap: wrap;
-}
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-.stat-num {
-  font-family: var(--font-disp);
-  font-size: 28px;
-  font-weight: 800;
+.ma-name { font-weight: 700; letter-spacing: 0.05em; font-size: 13px; }
+.ma-label { font-size: 13px; color: var(--ma-text-muted); }
+
+.ma-title {
+  font-family: var(--ma-font-disp);
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 0.95;
   letter-spacing: -0.02em;
-  color: var(--text-1);
-}
-.stat-label {
-  font-size: 12px;
-  color: var(--text-3);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
-.stat-divider {
-  width: 1px;
-  height: 32px;
-  background: var(--border);
+  margin-bottom: 24px;
 }
 
-/* ── Sections ── */
-.section {
-  padding: 64px 24px;
-}
-.section--datasets {
-  background: linear-gradient(180deg, transparent 0%, rgba(245, 158, 11, 0.02) 100%);
-}
-.section-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.section-header {
+.ma-desc {
+  font-size: 18px;
+  color: var(--ma-text-muted);
+  max-width: 400px;
+  line-height: 1.5;
   margin-bottom: 40px;
 }
-.section-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  margin-bottom: 12px;
-}
-.section-tag--live {
-  color: var(--green);
-  background: var(--green-dim);
-}
-.section-tag--data {
-  color: var(--amber);
-  background: var(--amber-dim);
-}
-.section-title {
-  font-family: var(--font-disp);
-  font-size: clamp(24px, 4vw, 34px);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  color: var(--text-1);
-  margin-bottom: 8px;
-}
-.section-sub {
-  font-size: 15px;
-  color: var(--text-2);
-}
 
-/* ── Grid ── */
-.grid {
-  display: grid;
+.ma-hero-links {
+  display: flex;
   gap: 16px;
 }
-.grid--apps {
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: auto;
-}
-.grid--datasets {
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+.ma-link-btn {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 10px 20px;
+  border: 1px solid var(--ma-border);
+  transition: all 0.2s;
 }
 
-/* Bento-style featured card */
-.grid--apps .card--featured {
-  grid-column: span 2;
+.ma-link-btn:hover {
+  background: var(--ma-text);
+  color: var(--ma-bg);
+}
+
+/* ── Feed (Scrollable Right) ── */
+.ma-feed {
+  flex: 1;
+  min-width: 0;
+  padding: 0 48px;
+}
+
+.ma-feed-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding-top: 40vh;
+  padding-bottom: 40vh;
 }
 
 /* ── Cards ── */
-.card {
-  display: flex;
-  flex-direction: column;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+.ma-card {
+  padding: 0;
   position: relative;
   overflow: hidden;
-  gap: 0;
 }
-.card::before {
-  content: '';
+
+/* ── Projects (Row Layout) ── */
+.ma-project {
+  display: flex;
+  align-items: stretch;
+  min-height: 280px;
+}
+
+.ma-project-link {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.ma-project-info {
+  flex: 1;
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+  position: relative;
+  z-index: 1;
+}
+
+.ma-project-thumb {
+  flex-shrink: 0;
+  width: 50%;
+  max-width: 500px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right center;
+  position: relative;
+  z-index: 1;
+}
+
+.ma-project-overlay {
+  display: none; 
+}
+
+.ma-project-content {}
+
+.ma-project-name {
+  font-family: var(--ma-font-disp);
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.ma-project-sub {
+  font-size: 16px;
+  color: var(--ma-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ma-project-github {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  color: var(--ma-text-muted);
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.ma-project:hover .ma-project-github { opacity: 1; }
+
+.ma-project-github:hover {
+  color: var(--ma-text);
+  border-color: var(--ma-border);
+  background: var(--ma-card-bg);
+}
+
+
+
+
+/* ── Textures ── */
+.ma-texture {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+}
+
+.ma-noise {
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  background: radial-gradient(circle at 100% 0%, rgba(255, 62, 62, 0.03) 0%, transparent 50%);
   pointer-events: none;
 }
-.card--live::before {
-  background: radial-gradient(ellipse at top left, var(--green-glow), transparent 60%);
-}
-.card--dataset::before {
-  background: radial-gradient(ellipse at top left, rgba(245, 158, 11, 0.04), transparent 60%);
-}
-.card:hover {
-  background: var(--bg-card-h);
-  border-color: var(--border-h);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-.card:hover::before { opacity: 1; }
 
-.card--live:hover { border-color: rgba(34, 197, 94, 0.25); }
-.card--dataset:hover { border-color: rgba(245, 158, 11, 0.25); }
+/* ── Scroll-Driven Animations ── */
+@supports (animation-timeline: view()) {
+  @keyframes ma-scale {
+    0% {
+      opacity: 0.4;
+      transform: scale(0.9);
+      filter: blur(0);
+    }
+    15% {
+      opacity: 0.6;
+      transform: scale(0.93);
+      filter: blur(0);
+    }
+    40% {
+      opacity: 1;
+      transform: scale(1.08);
+      filter: blur(0);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.08);
+      filter: blur(0);
+    }
+    85% {
+      opacity: 0.6;
+      transform: scale(0.93);
+      filter: blur(0);
+    }
+    100% {
+      opacity: 0.4;
+      transform: scale(0.9);
+      filter: blur(2px);
+    }
+  }
 
-.card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-.card-icon {
-  font-size: 28px;
-  line-height: 1;
-}
-.card-icon--sm { font-size: 20px; }
-
-.card-badge {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 3px 9px;
-  border-radius: 100px;
-}
-.card-badge--live {
-  color: var(--green);
-  background: var(--green-dim);
-  border: 1px solid rgba(34, 197, 94, 0.2);
-}
-.card-badge--data {
-  color: var(--amber);
-  background: var(--amber-dim);
-  border: 1px solid rgba(245, 158, 11, 0.2);
-}
-.card-badge--wip {
-  color: var(--text-2);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
-}
-
-.card-title {
-  font-family: var(--font-disp);
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text-1);
-  margin-bottom: 8px;
-}
-.card--featured .card-title { font-size: 22px; }
-
-.card-desc {
-  font-size: 14px;
-  color: var(--text-2);
-  line-height: 1.6;
-  flex: 1;
-  margin-bottom: 16px;
-}
-
-.card-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-.card-source, .card-since {
-  font-size: 11px;
-  color: var(--text-3);
-  letter-spacing: 0.03em;
-}
-
-.card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-  margin-top: auto;
-}
-.card-url {
-  font-size: 12px;
-  color: var(--text-3);
-  font-family: ui-monospace, 'SF Mono', monospace;
-}
-.card-arrow {
-  font-size: 16px;
-  color: var(--text-3);
-  transition: color 0.15s, transform 0.15s;
-}
-.card:hover .card-arrow {
-  color: var(--text-1);
-  transform: translate(2px, -2px);
-}
-.card--live:hover .card-arrow { color: var(--green); }
-.card--dataset:hover .card-arrow { color: var(--amber); }
-.card--live:hover .card-url { color: var(--text-2); }
-.card--dataset:hover .card-url { color: var(--text-2); }
-
-/* ── CTA ── */
-.cta-section {
-  padding: 80px 24px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-}
-.cta-inner {
-  max-width: 520px;
-  margin: 0 auto;
-}
-.cta-label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  margin-bottom: 12px;
-}
-.cta-title {
-  font-family: var(--font-disp);
-  font-size: clamp(22px, 4vw, 30px);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  color: var(--text-1);
-  margin-bottom: 12px;
-}
-.cta-desc {
-  font-size: 15px;
-  color: var(--text-2);
-  margin-bottom: 28px;
-}
-.cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 22px;
-  background: var(--text-1);
-  color: var(--bg);
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: var(--radius);
-  transition: opacity 0.15s, transform 0.15s;
-}
-.cta-btn:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
-}
-
-/* ── Footer ── */
-.footer {
-  border-top: 1px solid var(--border);
-  padding: 20px 24px;
-}
-.footer-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.footer-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.footer-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-2);
-}
-.footer-sep { color: var(--text-3); }
-.footer-link {
-  font-size: 13px;
-  color: var(--text-3);
-  transition: color 0.15s;
-}
-.footer-link:hover { color: var(--text-1); }
-.footer-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  .ma-project {
+    animation: ma-scale linear forwards;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+    transform-origin: right center;
+  }
 }
 
 /* ── Responsive ── */
-@media (max-width: 720px) {
-  .hero { padding: 60px 20px 48px; }
-  .section { padding: 48px 20px; }
-  .grid--apps .card--featured { grid-column: span 1; }
-  .hero-stats { gap: 20px; }
-  .stat-divider { height: 24px; }
+@media (max-width: 1200px) {
+  .ma-sidebar { width: 340px; padding: 60px 40px; }
+  .ma-feed { padding: 0 32px; }
+  .ma-project-name { font-size: 36px; }
 }
 
-@media (max-width: 480px) {
-  .nav-inner { padding: 0 16px; }
-  .hero-badge { font-size: 11px; }
-  .grid { gap: 12px; }
-  .card { padding: 20px; }
-  .cta-section { padding: 56px 20px; }
-  .footer { padding: 16px 20px; }
+@media (max-width: 1000px) {
+  .ma-layout { flex-direction: column; }
+  .ma-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid var(--ma-border);
+    padding: 60px 40px;
+  }
+  .ma-feed { width: 100%; padding: 0 32px; }
+  .ma-feed-grid { padding-top: 20vh; padding-bottom: 20vh; }
+}
+
+@media (max-width: 600px) {
+  .ma-sidebar { padding: 48px 24px; }
+  .ma-feed { padding: 0 16px; }
+  .ma-title { font-size: 48px; }
+  .ma-project { min-height: 200px; }
+  .ma-project-name { font-size: 28px; }
+  .ma-project-thumb { width: 100%; height: 200px; background-position: center; margin-top: 24px; }
+  .ma-project-link { flex-direction: column; }
+  .ma-project-info { text-align: left; align-items: flex-start; padding: 24px 16px; }
+  .ma-feed-grid { gap: 40px; }
 }
 </style>
