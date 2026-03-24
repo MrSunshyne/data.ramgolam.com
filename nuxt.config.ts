@@ -5,6 +5,9 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'github_pages',
+    prerender: {
+      routes: ['/'],
+    },
   },
 
   app: {
