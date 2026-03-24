@@ -403,21 +403,82 @@ a { color: inherit; text-decoration: none; }
     position: relative;
     border-right: none;
     border-bottom: 1px solid var(--ma-border);
-    padding: 60px 40px;
+    padding: 80px 40px;
+    text-align: center;
+    align-items: center;
   }
-  .ma-feed { width: 100%; padding: 0 32px; }
-  .ma-feed-grid { padding-top: 20vh; padding-bottom: 20vh; }
+  .ma-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ma-profile { justify-content: center; }
+  .ma-desc { max-width: 500px; }
+  .ma-hero-links { justify-content: center; }
+  
+  .ma-feed { width: 100%; padding: 0; }
+  .ma-feed-grid { 
+    padding-top: 60px; 
+    padding-bottom: 120px;
+    gap: 80px; 
+  }
+  
+  /* Project Card Overhaul for Tablet/Mobile */
+  .ma-project { 
+    flex-direction: column;
+    min-height: auto;
+    animation: none !important; /* Disable scroll-scale on mobile for better usability */
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .ma-project-link { 
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+  }
+  .ma-project-info { 
+    order: 2;
+    width: 100%;
+    padding: 32px 24px;
+    align-items: center;
+    text-align: center;
+  }
+  .ma-project-thumb { 
+    order: 1;
+    width: 100%; 
+    max-width: 100%;
+    height: 300px; 
+    background-position: center;
+    border-bottom: 1px solid var(--ma-border);
+  }
+  .ma-project-name { font-size: 32px; margin-bottom: 12px; }
+  .ma-project-sub { font-size: 14px; }
+  
+  .ma-project-github {
+    top: 24px;
+    right: 24px;
+    opacity: 1;
+    background: rgba(10, 10, 10, 0.8);
+    border-color: var(--ma-border);
+    backdrop-filter: blur(8px);
+  }
 }
 
 @media (max-width: 600px) {
-  .ma-sidebar { padding: 48px 24px; }
-  .ma-feed { padding: 0 16px; }
-  .ma-title { font-size: 48px; }
-  .ma-project { min-height: 200px; }
+  .ma-sidebar { padding: 60px 24px; }
+  .ma-title { font-size: 42px; }
+  .ma-desc { font-size: 16px; }
+  
+  .ma-feed-grid { gap: 64px; }
+  .ma-project-thumb { height: 240px; }
   .ma-project-name { font-size: 28px; }
-  .ma-project-thumb { width: 100%; height: 200px; background-position: center; margin-top: 24px; }
-  .ma-project-link { flex-direction: column; }
-  .ma-project-info { text-align: left; align-items: flex-start; padding: 24px 16px; }
-  .ma-feed-grid { gap: 40px; }
+  
+  .ma-link-btn {
+    flex: 1;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 11px;
+  }
+  .ma-hero-links { width: 100%; }
 }
 </style>
