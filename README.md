@@ -1,6 +1,11 @@
-# Nuxt Minimal Starter
+# data.ramgolam.com
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+The index of Sandeep Ramgolam's data projects, at https://data.ramgolam.com. A Nuxt site, generated statically and deployed to GitHub Pages on every push to `main` (`.github/workflows/deploy.yml`).
+
+- `/`: the projects and datasets (`app/pages/index.vue`).
+- `/stats`: page visits per project per day (`app/pages/stats.vue`). The browser loads the figures from `https://stats.ramgolam.com/api/traffic`, served by the private `MrSunshyne/stats-worker` repo: a Cloudflare Worker that copies each site's daily visits from GoatCounter into D1 every 10 minutes. The list of sites lives in that repo's `src/sites.ts`.
+
+Visits to this site are counted with GoatCounter (`data-ramgolam`). `app/plugins/goatcounter.client.ts` counts the pages opened after the first one.
 
 ## Setup
 
