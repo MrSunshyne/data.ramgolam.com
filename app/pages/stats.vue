@@ -7,7 +7,7 @@
           <span class="ma-label">/ TRAFFIC</span>
         </header>
         <h1 class="ma-title">Project <br />Traffic</h1>
-        <p class="ma-desc">Page visits to each project, per day. Counted with GoatCounter: no cookies, nothing that identifies anyone. Days are in Mauritius time.</p>
+        <p class="ma-desc">Page visits to each project, per day. Counted with GoatCounter, and with Umami on a few sites before that: no cookies, nothing that identifies anyone. Days are in Mauritius time.</p>
         <div class="st-ranges" role="group" aria-label="Period">
           <button
             v-for="r in RANGES"
@@ -39,23 +39,30 @@
             <span v-if="s.change" class="st-change" :class="s.change.tone" :title="`${visitCount(s.previous ?? 0)} in the ${data.days} days before`">{{ s.change.text }}</span>
           </div>
           <svg class="st-chart" :viewBox="`0 0 ${s.bars.length} 100`" preserveAspectRatio="none" role="img" :aria-label="`${s.name}: ${visitCount(s.total)}`">
-            <rect
-              v-for="(b, i) in s.bars"
-              :key="i"
-              :x="i + 0.15"
-              :y="100 - height(b.visits, s.peak)"
-              width="0.7"
-              :height="height(b.visits, s.peak)"
-              :class="{ now: i === s.bars.length - 1 }"
-            >
-              <title>{{ b.label }}: {{ visitCount(b.visits) }}</title>
-            </rect>
+            <template v-for="(b, i) in s.bars" :key="i">
+              <rect
+                v-if="b.visits !== null"
+                :x="i + 0.15"
+                :y="100 - height(b.visits, s.peak)"
+                width="0.7"
+                :height="height(b.visits, s.peak)"
+                :class="{ now: i === s.bars.length - 1, imported: b.source !== 'goatcounter' }"
+              >
+                <title>{{ b.label }}: {{ visitCount(b.visits) }}{{ b.source !== 'goatcounter' ? `, counted by ${sourceName(b.source)}` : '' }}</title>
+              </rect>
+            </template>
           </svg>
           <div class="st-axis">
             <span>{{ s.bars[0]?.label }}</span>
             <span v-if="s.peak">busiest {{ weekly ? 'week' : 'day' }}: {{ fmt(s.peak) }}</span>
             <span>{{ weekly ? 'this week' : 'today' }}</span>
           </div>
+          <p v-if="s.since || s.sources.length" class="st-note">
+            <template v-if="s.since">Counted since {{ s.since }}. </template>
+            <span v-for="src in s.sources" :key="src.name" class="st-imported">
+              {{ fmtDay(src.from) }} – {{ fmtDay(src.to) }}: visitors counted by {{ sourceName(src.name) }}, before GoatCounter.
+            </span>
+          </p>
         </li>
       </ol>
     </main>
@@ -69,7 +76,8 @@ interface TrafficSite {
   url: string
   total: number
   previous: number | null
-  visits: number[]
+  visits: (number | null)[]
+  sources: { name: string; from: string; to: string }[]
 }
 
 // https://stats.ramgolam.com/api/traffic (the stats-worker repo)
@@ -103,6 +111,10 @@ const { data, error } = useFetch<Traffic>('https://stats.ramgolam.com/api/traffi
 
 const weekly = computed(() => (data.value?.days ?? 0) >= WEEKLY_FROM)
 
+// Counters that some days were imported from, before GoatCounter was added.
+const SOURCE_NAMES: Record<string, string> = { umami: 'Umami' }
+const sourceName = (name: string | null) => (name && SOURCE_NAMES[name]) || name || ''
+
 const dayFormat = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 const fmtDay = (day: string) => dayFormat.format(new Date(`${day}T00:00:00Z`))
 const fmt = (n: number) => n.toLocaleString('en-GB')
@@ -112,18 +124,28 @@ const height = (visits: number, peak: number) => (peak ? Math.max((visits / peak
 
 interface Bar {
   label: string
-  visits: number
+  /** null: nothing counted then. */
+  visits: number | null
+  /** 'goatcounter', or the counter the days were imported from. */
+  source: string | null
 }
 
 // One bar a day, or a week a bar counted back from today, so every bar but the first is a full week.
-function bars(t: Traffic, visits: number[]): Bar[] {
-  if (!weekly.value) return visits.map((v, i) => ({ label: fmtDay(addDays(t.from, i)), visits: v }))
+function bars(t: Traffic, s: TrafficSite): Bar[] {
+  const sourceOf = (i: number) => {
+    const day = addDays(t.from, i)
+    return s.sources.find((src) => day >= src.from && day <= src.to)?.name ?? 'goatcounter'
+  }
+  if (!weekly.value) return s.visits.map((v, i) => ({ label: fmtDay(addDays(t.from, i)), visits: v, source: v === null ? null : sourceOf(i) }))
   const out: Bar[] = []
-  for (let end = visits.length; end > 0; end -= 7) {
+  for (let end = s.visits.length; end > 0; end -= 7) {
     const start = Math.max(0, end - 7)
+    const counted = s.visits.map((v, i) => [v, i] as const).slice(start, end).filter(([v]) => v !== null)
     out.unshift({
       label: `${fmtDay(addDays(t.from, start))} – ${fmtDay(addDays(t.from, end - 1))}`,
-      visits: visits.slice(start, end).reduce((a, b) => a + b, 0),
+      visits: counted.length ? counted.reduce((a, [v]) => a + (v ?? 0), 0) : null,
+      // A week partly imported is drawn as imported.
+      source: counted.map(([, i]) => sourceOf(i)).find((src) => src !== 'goatcounter') ?? (counted.length ? 'goatcounter' : null),
     })
   }
   return out
@@ -142,8 +164,16 @@ const sites = computed(() => {
   return [...t.sites]
     .sort((a, b) => b.total - a.total)
     .map((s) => {
-      const b = bars(t, s.visits)
-      return { ...s, bars: b, peak: Math.max(0, ...b.map((x) => x.visits)), change: change(s) }
+      const b = bars(t, s)
+      const first = s.visits.findIndex((v) => v !== null)
+      return {
+        ...s,
+        bars: b,
+        peak: Math.max(0, ...b.map((x) => x.visits ?? 0)),
+        change: change(s),
+        // The first counted day, when the period starts before it.
+        since: first > 0 ? fmtDay(addDays(t.from, first)) : '',
+      }
     })
 })
 
@@ -265,6 +295,8 @@ const updated = computed(() => {
 .st-chart rect:hover { fill: var(--ma-accent); opacity: 1; }
 /* Today, or this week: not over yet. */
 .st-chart rect.now { opacity: 0.4; }
+/* Days counted by another counter before GoatCounter. */
+.st-chart rect.imported { fill: #8a8a8a; opacity: 0.6; }
 
 .st-axis {
   display: flex;
@@ -275,6 +307,23 @@ const updated = computed(() => {
   color: var(--ma-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+.st-note {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--ma-text-muted);
+  line-height: 1.5;
+}
+
+.st-imported::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  background: #8a8a8a;
+  opacity: 0.6;
 }
 
 @media (max-width: 1000px) {
