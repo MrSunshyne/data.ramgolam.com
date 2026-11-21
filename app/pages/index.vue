@@ -12,7 +12,7 @@
           <div class="ma-hero-links">
             <a href="https://sandeep.ramgolam.com" target="_blank" class="ma-link-btn">Portfolio</a>
             <a href="https://github.com/MrSunshyne" target="_blank" class="ma-link-btn">GitHub</a>
-            <NuxtLink to="/stats" class="ma-link-btn">Traffic</NuxtLink>
+            <a href="https://stats.ramgolam.com" target="_blank" class="ma-link-btn">Traffic</a>
           </div>
         </div>
         <div class="ma-noise"></div>
