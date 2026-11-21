@@ -7,7 +7,7 @@
           <span class="ma-label">/ TRAFFIC</span>
         </header>
         <h1 class="ma-title">Project <br />Traffic</h1>
-        <p class="ma-desc">Page visits to each project, per day. Counted with GoatCounter, and with Umami on a few sites before that: no cookies, nothing that identifies anyone. Days are in Mauritius time.</p>
+        <p class="ma-desc">Page visits to each project, per day. Counted with GoatCounter; on a few sites, earlier days come from Umami or Cloudflare. No cookies, nothing that identifies anyone. Days are in Mauritius time.</p>
         <div class="st-ranges" role="group" aria-label="Period">
           <button
             v-for="r in RANGES"
@@ -22,7 +22,7 @@
           </button>
         </div>
         <p v-if="data" class="st-summary">
-          {{ visitCount(grandTotal) }} from {{ fmtDay(data.from) }} to today<template v-if="updated">, updated {{ updated }}</template>.
+          {{ sites.some((s) => s.estimated) ? 'About ' : '' }}{{ visitCount(grandTotal) }} from {{ fmtDay(data.from) }} to today<template v-if="updated">, updated {{ updated }}</template>.
         </p>
       </div>
       <div class="ma-noise"></div>
@@ -35,7 +35,7 @@
         <li v-for="s in sites" :key="s.id" class="st-site" :class="{ quiet: !s.total }">
           <div class="st-head">
             <a :href="s.url" target="_blank" class="st-name">{{ s.name }}</a>
-            <span class="st-total">{{ fmt(s.total) }}<small> {{ s.total === 1 ? 'visit' : 'visits' }}</small></span>
+            <span class="st-total" :title="s.estimated ? 'Includes estimates from a sample' : undefined">{{ s.estimated ? '≈ ' : '' }}{{ fmt(s.total) }}<small> {{ s.total === 1 ? 'visit' : 'visits' }}</small></span>
             <span v-if="s.change" class="st-change" :class="s.change.tone" :title="`${visitCount(s.previous ?? 0)} in the ${data.days} days before`">{{ s.change.text }}</span>
           </div>
           <svg class="st-chart" :viewBox="`0 0 ${s.bars.length} 100`" preserveAspectRatio="none" role="img" :aria-label="`${s.name}: ${visitCount(s.total)}`">
@@ -48,19 +48,19 @@
                 :height="height(b.visits, s.peak)"
                 :class="{ now: i === s.bars.length - 1, imported: b.source !== 'goatcounter' }"
               >
-                <title>{{ b.label }}: {{ visitCount(b.visits) }}{{ b.source !== 'goatcounter' ? `, counted by ${sourceName(b.source)}` : '' }}</title>
+                <title>{{ b.label }}: {{ s.estimated && b.source !== 'goatcounter' ? '≈ ' : '' }}{{ visitCount(b.visits) }}{{ b.source !== 'goatcounter' ? `, ${sourceInfo(b.source).short}` : '' }}</title>
               </rect>
             </template>
           </svg>
           <div class="st-axis">
             <span>{{ s.bars[0]?.label }}</span>
-            <span v-if="s.peak">busiest {{ weekly ? 'week' : 'day' }}: {{ fmt(s.peak) }}</span>
-            <span>{{ weekly ? 'this week' : 'today' }}</span>
+            <span v-if="s.peak">busiest {{ s.weekly ? 'week' : 'day' }}: {{ fmt(s.peak) }}</span>
+            <span>{{ s.weekly ? 'this week' : 'today' }}</span>
           </div>
           <p v-if="s.since || s.sources.length" class="st-note">
             <template v-if="s.since">Counted since {{ s.since }}. </template>
             <span v-for="src in s.sources" :key="src.name" class="st-imported">
-              {{ fmtDay(src.from) }} – {{ fmtDay(src.to) }}: visitors counted by {{ sourceName(src.name) }}, before GoatCounter.
+              {{ fmtDay(src.from) }} – {{ fmtDay(src.to) }}: {{ sourceInfo(src.name).what }}, before GoatCounter.
             </span>
           </p>
         </li>
@@ -111,9 +111,17 @@ const { data, error } = useFetch<Traffic>('https://stats.ramgolam.com/api/traffi
 
 const weekly = computed(() => (data.value?.days ?? 0) >= WEEKLY_FROM)
 
-// Counters that some days were imported from, before GoatCounter was added.
-const SOURCE_NAMES: Record<string, string> = { umami: 'Umami' }
-const sourceName = (name: string | null) => (name && SOURCE_NAMES[name]) || name || ''
+// Counters that some days were imported from, before GoatCounter was added. Estimates come
+// from a sample, so a single day says little: sites with them are drawn a week to a bar.
+const SOURCES: Record<string, { short: string; what: string; estimate: boolean }> = {
+  umami: { short: 'counted by Umami', what: 'visitors counted by Umami', estimate: false },
+  cloudflare: {
+    short: 'estimated by Cloudflare',
+    what: 'page views estimated by Cloudflare Web Analytics from a sample of about 1 in 10, shown by week',
+    estimate: true,
+  },
+}
+const sourceInfo = (name: string | null) => SOURCES[name ?? ''] ?? { short: `from ${name}`, what: `from ${name}`, estimate: false }
 
 const dayFormat = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 const fmtDay = (day: string) => dayFormat.format(new Date(`${day}T00:00:00Z`))
@@ -131,12 +139,12 @@ interface Bar {
 }
 
 // One bar a day, or a week a bar counted back from today, so every bar but the first is a full week.
-function bars(t: Traffic, s: TrafficSite): Bar[] {
+function bars(t: Traffic, s: TrafficSite, byWeek: boolean): Bar[] {
   const sourceOf = (i: number) => {
     const day = addDays(t.from, i)
     return s.sources.find((src) => day >= src.from && day <= src.to)?.name ?? 'goatcounter'
   }
-  if (!weekly.value) return s.visits.map((v, i) => ({ label: fmtDay(addDays(t.from, i)), visits: v, source: v === null ? null : sourceOf(i) }))
+  if (!byWeek) return s.visits.map((v, i) => ({ label: fmtDay(addDays(t.from, i)), visits: v, source: v === null ? null : sourceOf(i) }))
   const out: Bar[] = []
   for (let end = s.visits.length; end > 0; end -= 7) {
     const start = Math.max(0, end - 7)
@@ -164,13 +172,18 @@ const sites = computed(() => {
   return [...t.sites]
     .sort((a, b) => b.total - a.total)
     .map((s) => {
-      const b = bars(t, s)
+      const estimated = s.sources.some((src) => sourceInfo(src.name).estimate)
+      const byWeek = weekly.value || estimated
+      const b = bars(t, s, byWeek)
       const first = s.visits.findIndex((v) => v !== null)
       return {
         ...s,
         bars: b,
+        weekly: byWeek,
+        estimated,
         peak: Math.max(0, ...b.map((x) => x.visits ?? 0)),
-        change: change(s),
+        // A change against a sampled estimate would say more about the sample than the traffic.
+        change: estimated ? null : change(s),
         // The first counted day, when the period starts before it.
         since: first > 0 ? fmtDay(addDays(t.from, first)) : '',
       }
