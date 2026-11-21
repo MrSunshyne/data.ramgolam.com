@@ -42,9 +42,9 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          src: 'https://cloud.umami.is/script.js',
-          defer: true,
-          'data-website-id': 'REPLACE_WITH_UMAMI_WEBSITE_ID',
+          src: 'https://gc.zgo.at/count.js',
+          async: true,
+          'data-goatcounter': 'https://data-ramgolam.goatcounter.com/count',
         },
       ],
     },
