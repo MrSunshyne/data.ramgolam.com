@@ -95,9 +95,9 @@ const projects = [
   {
     name: 'Power Outages',
     tagline: 'CEB Infrastructure Logs',
-    url: 'https://power-outages-mauritius.netlify.app',
+    url: 'https://courant.ramgolam.com',
     github: 'https://github.com/MrSunshyne/mauritius-power-outages',
-    image: 'https://power-outages-mauritius.netlify.app/__og-image__/image/og.png'
+    image: 'https://courant.ramgolam.com/og-image.png'
   },
   {
     name: 'Cloud Hosting',
