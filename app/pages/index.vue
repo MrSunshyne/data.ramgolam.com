@@ -100,6 +100,13 @@ const projects = [
     image: 'https://courant.ramgolam.com/og-image.png'
   },
   {
+    name: 'Reservoirs',
+    tagline: 'Water Storage in 3D',
+    url: 'https://mrsunshyne.github.io/mauritius-reservoirs/',
+    github: 'https://github.com/MrSunshyne/mauritius-reservoirs',
+    image: 'https://mrsunshyne.github.io/mauritius-reservoirs/og-image.jpg'
+  },
+  {
     name: 'Cloud Hosting',
     tagline: 'Hosting Provider Benchmark',
     url: 'https://github.com/MrSunshyne/cloud-hosting-mauritius',
@@ -113,6 +120,7 @@ const datasets = [
   { name: 'Gold Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-gold', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-gold/main/og-image.png' },
   { name: 'Electricity Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-electricity', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-electricity/main/public/images/electricity.png' },
   { name: 'Meteo Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-meteo', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-meteo/master/public/images/og-image.png' },
-  { name: 'Meetups Dataset', url: 'https://github.com/MrSunshyne/mauritius-meetups-data', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-meetups-data/main/public/images/og-image.png' }
+  { name: 'Meetups Dataset', url: 'https://github.com/MrSunshyne/mauritius-meetups-data', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-meetups-data/main/public/images/og-image.png' },
+  { name: 'Reservoirs Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-reservoirs', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-reservoirs/main/og-image.jpg' }
 ]
 </script>
