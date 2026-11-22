@@ -102,9 +102,9 @@ const projects = [
   {
     name: 'Reservoirs',
     tagline: 'Water Storage in 3D',
-    url: 'https://mrsunshyne.github.io/mauritius-reservoirs/',
+    url: 'https://reservoirs.ramgolam.com',
     github: 'https://github.com/MrSunshyne/mauritius-reservoirs',
-    image: 'https://mrsunshyne.github.io/mauritius-reservoirs/og-image.jpg'
+    image: 'https://reservoirs.ramgolam.com/og-image.jpg'
   },
   {
     name: 'Cloud Hosting',
