@@ -107,6 +107,12 @@ const projects = [
     image: 'https://reservoirs.ramgolam.com/og-image.jpg'
   },
   {
+    name: 'Flights',
+    tagline: 'Airport Traffic in 3D',
+    url: 'https://moris3d.ramgolam.com/flights',
+    image: 'https://moris3d.ramgolam.com/og/flights.jpg'
+  },
+  {
     name: 'Cloud Hosting',
     tagline: 'Hosting Provider Benchmark',
     url: 'https://github.com/MrSunshyne/cloud-hosting-mauritius',
@@ -121,6 +127,7 @@ const datasets = [
   { name: 'Electricity Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-electricity', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-electricity/main/public/images/electricity.png' },
   { name: 'Meteo Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-meteo', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-meteo/master/public/images/og-image.png' },
   { name: 'Meetups Dataset', url: 'https://github.com/MrSunshyne/mauritius-meetups-data', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-meetups-data/main/public/images/og-image.png' },
-  { name: 'Reservoirs Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-reservoirs', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-reservoirs/main/og-image.jpg' }
+  { name: 'Reservoirs Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-reservoirs', image: 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-reservoirs/main/og-image.jpg' },
+  { name: 'Flights Dataset', url: 'https://github.com/MrSunshyne/mauritius-dataset-flights', image: 'https://moris3d.ramgolam.com/og/flights.jpg' }
 ]
 </script>
